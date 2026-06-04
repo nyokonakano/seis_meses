@@ -1,0 +1,201 @@
+/* ================================================================
+   PARA ELIS — responsive.css
+   Mobile-first breakpoints
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   MOBILE BASE (< 480px)
+---------------------------------------------------------------- */
+@media (max-width: 480px) {
+
+  /* Intro */
+  .intro-content { gap: 1.2rem; padding: 1.5rem 1rem; }
+  .wax-seal { width: 58px; height: 58px; }
+  .wax-letter { font-size: 1.6rem; }
+  .intro-title { font-size: 2.4rem; }
+  .intro-btn { font-size: 1.1rem; padding: 0.65rem 1.8rem; }
+
+  /* Password */
+  .password-card { padding: 2rem 1.5rem; }
+
+  /* Header */
+  .main-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+  }
+  .counter-card { min-width: unset; }
+
+  /* Álbum — 2 columnas en móvil pequeño */
+  .album-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  /* Timeline — menos padding izquierdo */
+  .timeline { padding-left: 1.8rem; }
+  .timeline::before { left: 0.45rem; }
+  .timeline-dot { left: -1.8rem; }
+  .timeline-item.highlight .timeline-dot { left: calc(-1.8rem - 1.5px); }
+  .timeline-content { padding: 1.1rem 1.2rem; }
+
+  /* Carta */
+  .letter-paper {
+    padding: 1.8rem 1.5rem 1.8rem 2rem;
+    background-position: 0 46px;
+  }
+  .letter-paper::before { left: 2rem; }
+
+  /* Estrellas */
+  .love-star { font-size: 1.5rem; }
+
+  /* Cartas futuras */
+  .future-letter { flex-wrap: wrap; gap: 0.8rem; }
+  .letter-info h4 { font-size: 1rem; }
+
+  /* Final */
+  .final-title { font-size: 2.2rem; }
+}
+
+/* ----------------------------------------------------------------
+   TABLET (481px — 768px)
+---------------------------------------------------------------- */
+@media (min-width: 481px) and (max-width: 768px) {
+
+  /* Header */
+  .main-header {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Álbum — 2 columnas */
+  .album-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem;
+  }
+
+  /* Carta — ajuste de margen */
+  .letter-paper::before { left: 3rem; }
+}
+
+/* ----------------------------------------------------------------
+   TABLET GRANDE / LAPTOP (769px — 1024px)
+---------------------------------------------------------------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  /* Header en fila */
+  .main-header { align-items: center; }
+
+  /* Álbum — 3 columnas */
+  .album-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ----------------------------------------------------------------
+   DESKTOP (> 1024px)
+---------------------------------------------------------------- */
+@media (min-width: 1025px) {
+
+  /* Álbum — 5 columnas */
+  .album-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.6rem;
+  }
+
+  /* Timeline más espaciada */
+  .timeline { padding-left: 3rem; }
+  .timeline::before { left: 0.75rem; }
+  .timeline-dot { left: -3rem; width: 16px; height: 16px; }
+  .timeline-item.highlight .timeline-dot {
+    width: 20px; height: 20px;
+    left: calc(-3rem - 2px);
+  }
+
+  /* Carta más ancha */
+  .letter-paper::before { left: 5rem; }
+
+  /* Cartas futuras en grid horizontal */
+  .future-letters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+
+  .future-letter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .letter-lock { align-self: flex-end; margin-top: auto; }
+}
+
+/* ----------------------------------------------------------------
+   PANTALLAS MUY ANCHAS (> 1400px)
+---------------------------------------------------------------- */
+@media (min-width: 1400px) {
+  .chapter { max-width: 1000px; }
+  .main-header { max-width: 1100px; }
+}
+
+/* ----------------------------------------------------------------
+   PREFERENCIA DE MOVIMIENTO REDUCIDO
+---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .particle { display: none; }
+  .wax-seal { animation: none; }
+  .intro-btn { animation: none; }
+  .final-title { animation: none; }
+  .music-btn.playing #musicIcon { animation: none; }
+}
+
+/* ----------------------------------------------------------------
+   MODO OSCURO DEL SISTEMA (opcional — mantiene calidez)
+---------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  /* El proyecto tiene fondo oscuro en intro/password,
+     y crema en la experiencia — lo dejamos así por diseño intencional.
+     Solo ajustamos legibilidad si es necesario. */
+  :root {
+    --cream:      #F0E6D0;
+    --paper:      #F8F0DC;
+    --paper-dark: #EBE0C0;
+  }
+}
+
+/* ----------------------------------------------------------------
+   TOUCH / HOVER STATES
+---------------------------------------------------------------- */
+
+/* En touch, los hovers de photo-card no interfieren */
+@media (hover: none) {
+  .photo-card:nth-child(odd)  { transform: rotate(-1.2deg) !important; }
+  .photo-card:nth-child(even) { transform: rotate(1.1deg)  !important; }
+  .photo-card:active {
+    transform: scale(0.97) !important;
+    box-shadow: 0 4px 16px rgba(61,43,31,0.14) !important;
+  }
+
+  .thought-card:hover  { transform: none; }
+  .timeline-item:hover .timeline-content { transform: none; }
+}
+
+/* ----------------------------------------------------------------
+   PRINT (por si acaso)
+---------------------------------------------------------------- */
+@media print {
+  #starsCanvas,
+  #introScreen,
+  #passwordScreen,
+  .music-btn,
+  .intro-hint { display: none !important; }
+
+  #experience { opacity: 1 !important; pointer-events: all !important; position: static !important; }
+}
