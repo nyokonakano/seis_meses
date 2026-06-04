@@ -1,0 +1,190 @@
+:root{
+    --bg-main:#0B1020;
+    --bg-secondary:#121A2B;
+    --paper:#E7E2D8;
+    --gold:#C9B37E;
+    --pink:#D8A7B1;
+    --text:#F5F5F5;
+    --text-soft:#cfd4dc;
+    --radius:18px;
+    --transition:.35s ease;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg-main);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+#starsCanvas{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+.screen{
+    display:none;
+    min-height:100vh;
+}
+
+.screen.active{
+    display:flex;
+}
+
+#introScreen,
+#passwordScreen{
+    align-items:center;
+    justify-content:center;
+    padding:2rem;
+}
+
+.letter-container,
+.password-card{
+    max-width:700px;
+    width:100%;
+    background:rgba(18,26,43,.9);
+    border:1px solid rgba(201,179,126,.3);
+    border-radius:24px;
+    padding:3rem;
+    text-align:center;
+    backdrop-filter:blur(10px);
+}
+
+h1,h2{
+    font-family:'Cormorant Garamond',serif;
+}
+
+button{
+    border:none;
+    padding:14px 24px;
+    border-radius:12px;
+    background:var(--gold);
+    cursor:pointer;
+    margin-top:1rem;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #555;
+    background:#0f1525;
+    color:white;
+}
+
+.main-header{
+    padding:4rem 2rem;
+    display:flex;
+    justify-content:space-between;
+    gap:2rem;
+    flex-wrap:wrap;
+}
+
+.counter-card{
+    background:rgba(255,255,255,.05);
+    padding:1.5rem;
+    border-radius:18px;
+}
+
+.chapter{
+    max-width:1200px;
+    margin:auto;
+    padding:4rem 2rem;
+}
+
+.book-page,
+.stats-box,
+.thought-card{
+    background:var(--paper);
+    color:#222;
+    padding:2rem;
+    border-radius:18px;
+    margin-top:1rem;
+}
+
+.album-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:24px;
+    margin-top:2rem;
+}
+
+.photo-card{
+    background:white;
+    color:black;
+    padding:12px;
+    border-radius:12px;
+    transform:rotate(-1deg);
+    transition:.3s;
+}
+
+.photo-card:hover{
+    transform:rotate(0deg) scale(1.03);
+}
+
+.photo-card img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.thoughts-container{
+    display:grid;
+    gap:20px;
+}
+
+.stars-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
+    gap:20px;
+    margin-top:2rem;
+}
+
+.love-star{
+    font-size:2rem;
+    padding:1rem;
+}
+
+#loveMessage{
+    margin-top:2rem;
+    min-height:80px;
+}
+
+.future-letters{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.future-letter{
+    background:var(--paper);
+    color:black;
+    padding:2rem;
+    border-radius:18px;
+}
+
+#finalSection{
+    text-align:center;
+    padding:8rem 2rem;
+}
+
+@media(max-width:768px){
+    .main-header{
+        flex-direction:column;
+    }
+
+    .letter-container,
+    .password-card{
+        padding:2rem;
+    }
+}
