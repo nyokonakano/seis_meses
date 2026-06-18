@@ -1,6 +1,6 @@
-/* ================================================================
-   PARA ELIS — style.css
-   Estética: tierna y nostálgica · álbum vintage · papel y tinta
+﻿/* ================================================================
+   PARA ELIS ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â style.css
+   EstÃƒÆ’Ã‚Â©tica: tierna y nostÃƒÆ’Ã‚Â¡lgica Ãƒâ€šÃ‚Â· ÃƒÆ’Ã‚Â¡lbum vintage Ãƒâ€šÃ‚Â· papel y tinta
    ================================================================ */
 
 /* ----------------------------------------------------------------
@@ -22,7 +22,7 @@
   --gold-light:   #EDD89A;
   --ink:          #2C1A10;
 
-  /* Tipografía */
+  /* TipografÃƒÆ’Ã‚Â­a */
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-script:  'Dancing Script', cursive;
   --font-body:    'Lato', system-ui, sans-serif;
@@ -98,12 +98,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* Experience (main) es scroll normal, no fixed */
 #experience {
-  position: relative;
+  position: fixed;
+  inset: 0;
   z-index: 10;
-  display: block;
   opacity: 0;
   pointer-events: none;
   transition: opacity 1s ease;
+  background: var(--cream);
+  overflow: hidden;
 }
 
 #experience.active {
@@ -112,7 +114,138 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ================================================================
-   PANTALLA 1 — INTRO
+   HEADER GLOBAL ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â CONTADOR SIEMPRE VISIBLE
+=============================================================== */
+.global-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  background: linear-gradient(180deg, rgba(245,237,216,0.97) 60%, rgba(245,237,216,0));
+  padding: 0.6rem 1rem 1.2rem;
+  pointer-events: none;
+}
+
+.global-header-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header-menu-btn {
+  pointer-events: all;
+  background: rgba(61,43,31,0.08);
+  border: 1px solid rgba(196,132,58,0.2);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sepia);
+  font-size: 1.1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  margin-top: 0.2rem;
+}
+
+.header-menu-btn:hover {
+  background: var(--rose);
+  color: white;
+  border-color: var(--rose);
+  transform: scale(1.08);
+}
+
+.global-header-info {
+  flex: 1;
+  min-width: 0;
+  pointer-events: none;
+}
+
+.global-header-info .header-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.2rem;
+  font-weight: 400;
+}
+
+.global-header-info .header-title {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.global-header-info .header-title em {
+  font-style: italic;
+  color: var(--rose);
+  font-weight: 400;
+}
+
+#relationshipCounter {
+  pointer-events: all;
+  flex-shrink: 0;
+}
+
+#relationshipCounter h3 {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--sepia);
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.03em;
+}
+
+.counter-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  min-width: unset;
+  box-shadow: none;
+}
+
+.counter-display {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 600;
+  color: var(--rose);
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+}
+
+.counter-milestone {
+  font-size: 0.6rem;
+  color: var(--sepia-light);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3rem;
+}
+
+.milestone-bar {
+  height: 3px;
+  background: var(--paper-dark);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.milestone-progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--rose-light), var(--rose));
+  border-radius: 99px;
+  transition: width 1.5s cubic-bezier(.22,1,.36,1);
+}
+
+/* ================================================================
+   PANTALLA 1 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â INTRO
 ================================================================ */
 #introScreen {
   background: linear-gradient(160deg, #1C0F08 0%, #3A1E12 45%, #2A150D 100%);
@@ -120,7 +253,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   overflow: hidden;
 }
 
-/* Partículas flotantes */
+/* PartÃƒÆ’Ã‚Â­culas flotantes */
 #introParticles {
   position: absolute;
   inset: 0;
@@ -231,7 +364,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
-/* Botón intro */
+/* BotÃƒÆ’Ã‚Â³n intro */
 .intro-btn {
   display: inline-flex;
   align-items: center;
@@ -268,7 +401,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ================================================================
-   PANTALLA 2 — CONTRASEÑA
+   PANTALLA 2 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â CONTRASEÃƒÆ’Ã¢â‚¬ËœA
 ================================================================ */
 #passwordScreen {
   background: linear-gradient(160deg, #1C0F08 0%, #3A1E12 100%);
@@ -331,7 +464,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   box-shadow: 0 0 0 3px rgba(212,168,90,0.15);
 }
 
-/* Botón primario reutilizable */
+/* BotÃƒÆ’Ã‚Â³n primario reutilizable */
 .primary-btn {
   display: inline-flex;
   align-items: center;
@@ -382,14 +515,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ================================================================
-   EXPERIENCIA PRINCIPAL — LAYOUT
+   EXPERIENCIA PRINCIPAL ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â LAYOUT
 ================================================================ */
 #experience {
   padding-bottom: var(--section-gap);
 }
 
 /* ----------------------------------------------------------------
-   BOTÓN DE MÚSICA
+   BOTÃƒÆ’Ã¢â‚¬Å“N DE MÃƒÆ’Ã…Â¡SICA
 ---------------------------------------------------------------- */
 .music-btn {
   position: fixed;
@@ -417,103 +550,59 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transform: scale(1.08);
 }
 
-/* ----------------------------------------------------------------
-   HEADER / CONTADOR
----------------------------------------------------------------- */
-.main-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 3rem;
-  padding: clamp(4rem, 8vw, 7rem) var(--chapter-px) clamp(3rem, 6vw, 5rem);
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.header-eyebrow {
-  font-size: 0.75rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--amber);
-  margin-bottom: 0.6rem;
-  font-weight: 400;
-}
-
-.header-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 6vw, 4rem);
-  font-weight: 300;
-  line-height: 1.15;
-  color: var(--ink);
-}
-
-.header-title em {
-  font-style: italic;
-  color: var(--rose);
-}
-
-/* Contador */
-.counter-card {
-  background: var(--paper);
-  border: 1px solid rgba(196,132,58,0.25);
-  border-radius: 18px;
-  padding: 1.6rem 2rem;
-  min-width: 240px;
-  box-shadow: 0 8px 32px rgba(61,43,31,0.08), 0 1px 4px rgba(61,43,31,0.06);
-  flex-shrink: 0;
-}
-
-.counter-card h3 {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 400;
-  font-style: italic;
-  color: var(--sepia);
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.03em;
-}
-
-.counter-display {
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  font-weight: 600;
-  color: var(--rose);
-  line-height: 1.3;
-  margin-bottom: 0.6rem;
-}
-
-.counter-milestone {
-  font-size: 0.78rem;
-  color: var(--sepia-light);
-  letter-spacing: 0.05em;
-  margin-bottom: 0.6rem;
-}
-
-/* Barra de progreso */
-.milestone-bar {
-  height: 5px;
-  background: var(--paper-dark);
-  border-radius: 99px;
-  overflow: hidden;
-}
-
-.milestone-progress {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--rose-light), var(--rose));
-  border-radius: 99px;
-  transition: width 1.5s cubic-bezier(.22,1,.36,1);
-}
 
 /* ----------------------------------------------------------------
-   CAPÍTULOS (secciones generales)
+   CAPÃƒÆ’Ã‚ÂTULOS (secciones generales)
 ---------------------------------------------------------------- */
 .chapter {
   position: relative;
   max-width: 900px;
   margin: 0 auto var(--section-gap);
   padding: 0 var(--chapter-px);
+}
+
+/* Fondos personalizados por capÃƒÆ’Ã‚Â­tulo */
+/* CapÃƒÆ’Ã‚Â­tulos con fondo de imagen personalizado */
+.chapter.has-bg {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.chapter.has-bg::before {
+  display: none;
+}
+
+.chapter.has-bg .chapter-bg {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  background-image: var(--bg-img);
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.chapter-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(245,237,216,0.82);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.chapter.has-bg > .chapter-label,
+.chapter.has-bg > h2,
+.chapter.has-bg > .section-subtitle {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 4px rgba(253,246,227,0.6);
 }
 
 .chapter-label {
@@ -545,7 +634,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* Separador decorativo entre secciones */
 .chapter::before {
-  content: '— ✦ —';
+  content: 'ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â ÃƒÂ¢Ã…â€œÃ‚Â¦ ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â';
   display: block;
   text-align: center;
   font-size: 0.9rem;
@@ -558,7 +647,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 #capituloInicio::before { display: none; }
 
 /* ----------------------------------------------------------------
-   CAPÍTULO 1 — LIBRO / PÁGINA
+   CAPÃƒÆ’Ã‚ÂTULO 1 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â LIBRO / PÃƒÆ’Ã‚ÂGINA
 ---------------------------------------------------------------- */
 .book-page {
   background: var(--paper);
@@ -592,14 +681,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .book-page p:last-child { margin-bottom: 0; }
 
 /* ----------------------------------------------------------------
-   CAPÍTULO 2 — TIMELINE
+   CAPÃƒÆ’Ã‚ÂTULO 2 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â TIMELINE
 ---------------------------------------------------------------- */
 .timeline {
   position: relative;
   padding-left: 2.5rem;
 }
 
-/* Línea vertical */
+/* LÃƒÆ’Ã‚Â­nea vertical */
 .timeline::before {
   content: '';
   position: absolute;
@@ -690,7 +779,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ----------------------------------------------------------------
-   CAPÍTULO 3 — ÁLBUM (POLAROID)
+   CAPÃƒÆ’Ã‚ÂTULO 3 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â ÃƒÆ’Ã‚ÂLBUM (POLAROID)
 ---------------------------------------------------------------- */
 .album-grid {
   display: grid;
@@ -706,7 +795,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 3px;
   transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease;
   cursor: pointer;
-  /* rotación alterna para efecto polaroid */
+  /* rotaciÃƒÆ’Ã‚Â³n alterna para efecto polaroid */
 }
 
 .photo-card:nth-child(odd)  { transform: rotate(-1.2deg); }
@@ -745,7 +834,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ----------------------------------------------------------------
-   CAPÍTULO 4 — CARTA DE AMOR
+   CAPÃƒÆ’Ã‚ÂTULO 4 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â CARTA DE AMOR
 ---------------------------------------------------------------- */
 .letter-paper {
   background: var(--paper);
@@ -757,7 +846,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     0 1px 4px rgba(61,43,31,0.06),
     inset 0 0 60px rgba(240,230,200,0.3);
   position: relative;
-  /* Líneas de papel simuladas */
+  /* LÃƒÆ’Ã‚Â­neas de papel simuladas */
   background-image: repeating-linear-gradient(
     transparent,
     transparent 34px,
@@ -768,7 +857,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background-position: 0 48px;
 }
 
-/* Margen izquierdo rojo clásico */
+/* Margen izquierdo rojo clÃƒÆ’Ã‚Â¡sico */
 .letter-paper::before {
   content: '';
   position: absolute;
@@ -797,7 +886,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .letter-paper p {
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 2vw, 1.2rem);
-  line-height: 2.19; /* alineado con líneas de fondo (35px) */
+  line-height: 2.19; /* alineado con lÃƒÆ’Ã‚Â­neas de fondo (35px) */
   color: var(--sepia);
   margin-bottom: 1.05rem;
 }
@@ -819,7 +908,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ----------------------------------------------------------------
-   CAPÍTULO 5 — "LO QUE NUNCA TE DIJE"
+   CAPÃƒÆ’Ã‚ÂTULO 5 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â "LO QUE NUNCA TE DIJE"
 ---------------------------------------------------------------- */
 .thoughts-container {
   display: flex;
@@ -849,7 +938,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .thought-card::before {
-  content: '✦';
+  content: 'ÃƒÂ¢Ã…â€œÃ‚Â¦';
   position: absolute;
   left: -0.6rem;
   top: 50%;
@@ -861,7 +950,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ----------------------------------------------------------------
-   CAPÍTULO 6 — ESTRELLAS / RAZONES
+   CAPÃƒÆ’Ã‚ÂTULO 6 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â ESTRELLAS / RAZONES
 ---------------------------------------------------------------- */
 .stars-grid {
   display: flex;
@@ -922,7 +1011,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ----------------------------------------------------------------
-   CAPÍTULO 7 — PUZZLE
+   CAPÃƒÆ’Ã‚ÂTULO 7 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â PUZZLE
 ---------------------------------------------------------------- */
 .puzzle-container {
   background: var(--paper);
@@ -952,7 +1041,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ----------------------------------------------------------------
-   CAPÍTULO 8 — ESTADÍSTICA
+   CAPÃƒÆ’Ã‚ÂTULO 8 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â ESTADÃƒÆ’Ã‚ÂSTICA
 ---------------------------------------------------------------- */
 .stats-box {
   background: var(--paper);
@@ -972,26 +1061,128 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 0.6rem;
 }
 
-.stats-formula {
+.stats-formula-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.stats-formula-title {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  color: var(--sepia);
+  letter-spacing: 0.05em;
+  margin: 0 !important;
+}
+
+/* Tabla de eventos */
+.stats-chain {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stats-chain-row {
+  display: grid;
+  grid-template-columns: 2rem 1fr auto;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  background: rgba(196,132,58,0.05);
+  border: 1px solid rgba(196,132,58,0.1);
+  font-family: 'Courier New', monospace;
+  font-size: clamp(0.75rem, 1.8vw, 0.88rem);
+}
+
+.stats-ci {
+  color: var(--rose);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.stats-cdesc {
+  color: var(--sepia);
+  text-align: left;
+}
+
+.stats-cval {
+  color: var(--amber);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* LÃƒÆ’Ã‚Â­nea de igualdad con fracciÃƒÆ’Ã‚Â³n */
+.stats-equals {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.8rem;
-  margin: 2rem 0 1rem;
+  gap: 0.6rem;
   font-family: 'Courier New', monospace;
-  font-size: clamp(0.85rem, 2vw, 1rem);
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
   color: var(--sepia-light);
 }
 
-.stats-formula strong {
-  color: var(--rose);
-  font-size: 1.4em;
-}
+.stats-lhs   { color: var(--sepia); }
+.stats-eq-sign { color: var(--amber); font-weight: 700; }
 
-.stats-arrow {
+.stats-frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  vertical-align: middle;
+}
+.stats-num {
+  font-size: 1rem;
+  color: var(--sepia);
+  border-bottom: 1.5px solid var(--sepia-light);
+  padding: 0 0.3rem 1px;
+  line-height: 1.4;
+}
+.stats-den {
+  font-size: 0.68rem;
+  color: var(--sepia-light);
+  padding: 1px 0.3rem 0;
+  line-height: 1.4;
+}
+.stats-tiny {
+  color: var(--rose);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.stats-tiny sup { font-size: 0.65em; }
+
+/* LÃƒÆ’Ã‚Â­nea de Bayes */
+.stats-bayes {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.2rem;
+  font-family: 'Courier New', monospace;
+  font-size: clamp(0.85rem, 2.2vw, 1rem);
+  color: var(--sepia);
+  background: rgba(196,92,92,0.06);
+  border: 1px solid rgba(196,92,92,0.15);
+  border-radius: 10px;
+  padding: 0.7rem 1.2rem;
+}
+.stats-given {
   color: var(--amber);
-  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 0 0.1rem;
+}
+.stats-one {
+  color: var(--rose);
+  font-size: 1.5em;
+  margin-left: 0.1rem;
 }
 
 .stats-conclusion {
@@ -1004,7 +1195,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ----------------------------------------------------------------
-   CAPÍTULO 9 — CARTAS FUTURAS
+   CAPÃƒÆ’Ã‚ÂTULO 9 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â CARTAS FUTURAS
 ---------------------------------------------------------------- */
 .future-letters {
   display: flex;
@@ -1128,8 +1319,267 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ================================================================
+   PANTALLAS INTERNAS (menÃƒÆ’Ã‚Âº, visor de capÃƒÆ’Ã‚Â­tulo)
+=============================================================== */
+.inner-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  padding-top: 5.5rem;
+  padding-bottom: 4.5rem;
+}
+
+.inner-screen.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ================================================================
+   MENÃƒÆ’Ã…Â¡ DE CAPÃƒÆ’Ã‚ÂTULOS
+=============================================================== */
+#menuScreen {
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.menu-intro {
+  text-align: center;
+  padding: 1rem 1.5rem 0.5rem;
+}
+
+.menu-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+
+.menu-sub {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--sepia-light);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  max-width: 560px;
+  width: 100%;
+}
+
+.menu-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.2rem 0.8rem;
+  background: var(--paper);
+  border: 1px solid rgba(196,132,58,0.15);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(.22,1,.36,1);
+  animation: menuCardIn 0.5s ease both;
+  animation-delay: var(--delay, 0s);
+  text-align: center;
+  font-family: inherit;
+  color: var(--sepia);
+  overflow: hidden;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--gold);
+  box-shadow: 0 8px 28px rgba(196,132,58,0.15);
+  background: linear-gradient(135deg, var(--paper), rgba(212,168,90,0.06));
+}
+
+.menu-card:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.menu-card-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.menu-card-title {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.menu-card-sub {
+  font-size: 0.65rem;
+  color: var(--sepia-light);
+  font-style: italic;
+  line-height: 1.3;
+}
+
+@keyframes menuCardIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ================================================================
+   VISOR DE CAPÃƒÆ’Ã‚ÂTULO
+=============================================================== */
+.ch-content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 var(--chapter-px) 1rem;
+}
+
+.ch-content .chapter {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.ch-content .chapter.has-bg {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* ================================================================
+   BOTTOM NAV ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â BARRA DE NAVEGACIÃƒÆ’Ã¢â‚¬Å“N INFERIOR
+=============================================================== */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.6rem 1rem 0.8rem;
+  background: linear-gradient(0deg, rgba(245,237,216,0.97) 60%, rgba(245,237,216,0));
+  pointer-events: none;
+}
+
+.bn-btn {
+  pointer-events: all;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1.5px solid rgba(196,132,58,0.2);
+  color: var(--sepia);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(.22,1,.36,1);
+  position: relative;
+  overflow: hidden;
+}
+
+.bn-btn:hover:not(:disabled) {
+  background: var(--rose);
+  color: white;
+  border-color: var(--rose);
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(196,92,92,0.25);
+}
+
+.bn-btn:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.bn-btn:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.bn-dots {
+  pointer-events: all;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.bn-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(107,76,59,0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.bn-dot:hover {
+  background: var(--gold);
+  transform: scale(1.2);
+}
+
+.bn-dot.active {
+  background: var(--rose);
+  box-shadow: 0 0 0 3px rgba(196,92,92,0.2);
+  transform: scale(1.25);
+  animation: dotPulse 1.8s ease infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(196,92,92,0.2); }
+  50%      { box-shadow: 0 0 0 6px rgba(196,92,92,0.1); }
+}
+
+/* ================================================================
+   RIPPLE EFFECT (para todos los botones)
+=============================================================== */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  pointer-events: none;
+  animation: rippleAnim 0.6s ease-out forwards;
+}
+
+@keyframes rippleAnim {
+  from { transform: scale(0); opacity: 1; }
+  to   { transform: scale(2.5); opacity: 0; }
+}
+
+/* ================================================================
+   FINAL CHAPTER (dentro del visor)
+=============================================================== */
+.final-chapter {
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.final-chapter::before {
+  display: none;
+}
+
+/* ================================================================
    SCROLL REVEAL (clase aplicada por JS)
-================================================================ */
+=============================================================== */
 .reveal {
   opacity: 0;
   transform: translateY(24px);

@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para Elis ❤️</title>
   <meta name="description" content="Una pequeña parte de mi corazón convertida en recuerdos">
+
+  <!-- Open Graph / Redes Sociales -->
+  <meta property="og:title" content="Para Elis ❤️">
+  <meta property="og:description" content="Una pequeña parte de mi corazón convertida en recuerdos — 6 meses juntos">
+  <meta property="og:image" content="assets/icons/heart.svg">
+  <meta property="og:url" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Para Elis">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Para Elis ❤️">
+  <meta name="twitter:description" content="Una pequeña parte de mi corazón convertida en recuerdos">
+  <meta name="twitter:image" content="assets/icons/heart.svg">
+  <meta name="theme-color" content="#C45C5C">
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/icon.svg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@500;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
@@ -89,420 +108,343 @@
   <!-- ============================================================ -->
   <main id="experience" class="screen">
 
-    <!-- Botón de música flotante -->
-    <button id="musicToggle" class="music-btn" title="Música">
-      <span id="musicIcon">♪</span>
-    </button>
-
     <!-- Audio de fondo -->
     <audio id="backgroundMusic" loop>
       <source src="assets/audio/cancion.mp3" type="audio/mpeg">
     </audio>
 
     <!-- ======================================================== -->
-    <!-- HEADER — CONTADOR                                         -->
+    <!-- HEADER GLOBAL — CONTADOR SIEMPRE VISIBLE                 -->
     <!-- ======================================================== -->
-    <header class="main-header">
-      <div class="header-inner">
-        <p class="header-eyebrow">Nuestro pequeño universo</p>
-        <h1 class="header-title">Un lugar donde<br><em>viven nuestros recuerdos</em></h1>
-      </div>
-
-      <div id="relationshipCounter" class="counter-card">
-        <h3>Tiempo juntos</h3>
-        <div id="counterContent" class="counter-display">Calculando…</div>
-        <!-- ↓ Modificar fecha de inicio: AÑO, MES-1, DÍA -->
-        <!-- new Date(2026, 1, 8) = 8 de febrero de 2026    -->
-        <div class="counter-start-date" data-start="2026-02-08"></div>
-        <p class="counter-milestone">Camino a los 6 meses ✨</p>
-        <div id="milestoneBar" class="milestone-bar">
-          <div id="milestoneProgress" class="milestone-progress"></div>
+    <header id="globalHeader" class="global-header">
+      <div class="global-header-inner">
+        <button id="headerMenuBtn" class="header-menu-btn" title="Menú de capítulos">☰</button>
+        <div class="global-header-info">
+          <p class="header-eyebrow">Nuestro pequeño universo</p>
+          <h1 class="header-title">Para <em>mi amor</em></h1>
+        </div>
+        <div id="relationshipCounter" class="counter-card">
+          <h3>Tiempo juntos</h3>
+          <div id="counterContent" class="counter-display">Calculando…</div>
+          <div class="counter-start-date" data-start="2026-02-08"></div>
+          <p class="counter-milestone">Camino a los 6 meses ✨</p>
+          <div id="milestoneBar" class="milestone-bar">
+            <div id="milestoneProgress" class="milestone-progress"></div>
+          </div>
         </div>
       </div>
     </header>
 
-    <!-- ======================================================== -->
-    <!-- CAPÍTULO 1 — CÓMO EMPEZÓ TODO                            -->
-    <!-- ======================================================== -->
-    <section class="chapter" id="capituloInicio">
-      <div class="chapter-label">Capítulo 1</div>
-      <h2>Cómo empezó todo</h2>
+    <!-- Botón de música flotante -->
+    <button id="musicToggle" class="music-btn" title="Música">
+      <span id="musicIcon">♪</span>
+    </button>
 
-      <div class="book-page">
-        <p>
-          Nos conocimos en una clase de estadística.<br>
-          Al principio no imaginaba todo lo que vendría después.
-        </p>
-        <p>
-          Pero un día te miré a los ojos…<br>
-          y por alguna razón no pude sostener la mirada.
-        </p>
-        <p>
-          Desde entonces algo cambió.<br>
-          Sin que me diera cuenta, te volviste parte de mis días.
-        </p>
-        <!-- ↑ PERSONALIZA este texto con tu historia real -->
+    <!-- ======================================================== -->
+    <!-- SCREEN: MENÚ DE CAPÍTULOS                                 -->
+    <!-- ======================================================== -->
+    <section id="menuScreen" class="screen inner-screen">
+      <div class="menu-intro">
+        <h2 class="menu-heading">Nuestra historia</h2>
+        <p class="menu-sub">Elige un capítulo para comenzar ✨</p>
       </div>
+      <div class="menu-grid"></div>
     </section>
 
     <!-- ======================================================== -->
-    <!-- CAPÍTULO 2 — NUESTRA HISTORIA (TIMELINE)                 -->
+    <!-- SCREEN: VISOR DE CAPÍTULO                                 -->
     <!-- ======================================================== -->
-    <section class="chapter" id="capituloTimeline">
-      <div class="chapter-label">Capítulo 2</div>
-      <h2>Nuestra historia</h2>
-      <p class="section-subtitle">Los momentos que nos trajeron aquí.</p>
+    <section id="chapterScreen" class="screen inner-screen">
+      <div id="chContent" class="ch-content"></div>
+      <nav class="bottom-nav">
+        <button id="prevBtn" class="bn-btn" aria-label="Anterior">◀</button>
+        <div class="bn-dots" id="bnDots"></div>
+        <button id="nextBtn" class="bn-btn" aria-label="Siguiente">▶</button>
+      </nav>
+    </section>
 
-      <div class="timeline">
+    <!-- ======================================================== -->
+    <!-- TEMPLATES DE CAPÍTULOS                                    -->
+    <!-- ======================================================== -->
 
-        <!-- MOMENTO 1 -->
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">
-              <!-- ↓ CAMBIA la fecha -->
-              Febrero, 2026
-            </span>
-            <h4>El primer día</h4>
-            <p>
-              <!-- ↓ DESCRIBE el momento -->
-              Nos conocimos en estadística y algo en el aire cambió para siempre.
-            </p>
+    <!-- CAPÍTULO 0 — CÓMO EMPEZÓ TODO -->
+    <template id="chapter-0">
+      <div class="chapter has-bg" style="--bg-img: url('assets/backgrounds/bg-inicio.jpg')">
+        <div class="chapter-bg"></div>
+        <div class="chapter-label">Capítulo 1</div>
+        <h2>Cómo empezó todo</h2>
+        <div class="book-page">
+          <p>Nos conocimos en una clase de estadística.<br>Al principio no imaginaba todo lo que vendría después.</p>
+          <p>Pero un día te miré a los ojos…<br>y por alguna razón no pude sostener la mirada.</p>
+          <p>Desde entonces algo cambió.<br>Sin que me diera cuenta, te volviste parte de mis días.</p>
+        </div>
+      </div>
+    </template>
+
+    <!-- CAPÍTULO 1 — NUESTRA HISTORIA -->
+    <template id="chapter-1">
+      <div class="chapter has-bg" style="--bg-img: url('assets/backgrounds/bg-timeline.jpg')">
+        <div class="chapter-bg"></div>
+        <div class="chapter-label">Capítulo 2</div>
+        <h2>Nuestra historia</h2>
+        <p class="section-subtitle">Los momentos que nos trajeron aquí.</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">Febrero, 2026</span>
+              <h4>El primer día</h4>
+              <p>Nos conocimos en estadística y algo en el aire cambió para siempre.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">[Fecha del momento 2]</span>
+              <h4>[Título del momento]</h4>
+              <p>[Descripción de este recuerdo especial…]</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">[Fecha del momento 3]</span>
+              <h4>[Título del momento]</h4>
+              <p>[Descripción de este recuerdo especial…]</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">[Fecha del momento 4]</span>
+              <h4>[Título del momento]</h4>
+              <p>[Descripción de este recuerdo especial…]</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">[Fecha del momento 5]</span>
+              <h4>[Título del momento]</h4>
+              <p>[Descripción de este recuerdo especial…]</p>
+            </div>
+          </div>
+          <div class="timeline-item highlight">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">Agosto, 2026 ✨</span>
+              <h4>6 meses juntos</h4>
+              <p>El día que celebramos esto… y el comienzo de todo lo que viene.</p>
+            </div>
           </div>
         </div>
+      </div>
+    </template>
 
-        <!-- MOMENTO 2 -->
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">
-              <!-- ↓ CAMBIA la fecha -->
-              [Fecha del momento 2]
-            </span>
-            <h4>[Título del momento]</h4>
-            <p>
-              <!-- ↓ DESCRIBE el momento -->
-              [Descripción de este recuerdo especial…]
-            </p>
+    <!-- CAPÍTULO 2 — NUESTRO ÁLBUM -->
+    <template id="chapter-2">
+      <div class="chapter has-bg" style="--bg-img: url('assets/backgrounds/bg-album.jpg')">
+        <div class="chapter-bg"></div>
+        <div class="chapter-label">Capítulo 3</div>
+        <h2>Nuestro álbum</h2>
+        <p class="section-subtitle">Cada fotografía guarda un pedacito de nosotros.</p>
+        <div class="album-grid">
+          <div class="photo-card">
+            <img src="assets/fotos/foto1.jpg" alt="Recuerdo 01" loading="lazy">
+            <span>Recuerdo 01</span>
+          </div>
+          <div class="photo-card">
+            <img src="assets/fotos/foto2.jpg" alt="Recuerdo 02" loading="lazy">
+            <span>Recuerdo 02</span>
+          </div>
+          <div class="photo-card">
+            <img src="assets/fotos/foto3.jpg" alt="Recuerdo 03" loading="lazy">
+            <span>Recuerdo 03</span>
+          </div>
+          <div class="photo-card">
+            <img src="assets/fotos/foto4.jpg" alt="Recuerdo 04" loading="lazy">
+            <span>Recuerdo 04</span>
+          </div>
+          <div class="photo-card">
+            <img src="assets/fotos/foto5.jpg" alt="Recuerdo 05" loading="lazy">
+            <span>Recuerdo 05</span>
+          </div>
+          <div class="photo-card">
+            <img src="assets/fotos/foto6.jpg" alt="Recuerdo 06" loading="lazy">
+            <span>Recuerdo 06</span>
+          </div>
+          <div class="photo-card">
+            <img src="assets/fotos/foto7.jpg" alt="Recuerdo 07" loading="lazy">
+            <span>Recuerdo 07</span>
+          </div>
+          <div class="photo-card">
+            <img src="assets/fotos/foto8.jpg" alt="Recuerdo 08" loading="lazy">
+            <span>Recuerdo 08</span>
+          </div>
+          <div class="photo-card">
+            <img src="assets/fotos/foto9.jpg" alt="Recuerdo 09" loading="lazy">
+            <span>Recuerdo 09</span>
+          </div>
+          <div class="photo-card">
+            <img src="assets/fotos/foto10.jpg" alt="Recuerdo 10" loading="lazy">
+            <span>Recuerdo 10</span>
           </div>
         </div>
+      </div>
+    </template>
 
-        <!-- MOMENTO 3 -->
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">[Fecha del momento 3]</span>
-            <h4>[Título del momento]</h4>
-            <p>[Descripción de este recuerdo especial…]</p>
+    <!-- CAPÍTULO 3 — UNA CARTA PARA TI -->
+    <template id="chapter-3">
+      <div class="chapter has-bg" style="--bg-img: url('assets/backgrounds/bg-letter.jpg')">
+        <div class="chapter-bg"></div>
+        <div class="chapter-label">Capítulo 4</div>
+        <h2>Una carta para ti</h2>
+        <div class="letter-paper">
+          <p class="letter-date">Lima, agosto de 2026</p>
+          <p class="letter-greeting">Mi amor,</p>
+          <p>No sé muy bien cómo explicar lo que siento cuando estás cerca. Solo sé que desde que llegaste a mi vida, algo en mí cambió para bien. Llegaste como llegan las cosas más hermosas: sin avisar, sin hacer ruido, pero quedándote para siempre en mi corazón.</p>
+          <p>Desde entonces, mis días tienen más sentido, mis sonrisas tienen tu nombre y mis sueños siempre encuentran el camino hacia ti. A veces me descubro pensando en ti sin darme cuenta, y cuando lo noto, ya llevo varios minutos sonriendo como un tonto porque existes.</p>
+          <p>Eres la calma que necesito cuando todo parece complicado, la alegría que aparece incluso en mis días más difíciles y la razón por la que ahora creo que el amor puede sentirse tan real. Contigo aprendí que amar no es solamente decir palabras bonitas, sino elegir a una persona todos los días y sentir que volvería a hacerlo una y otra vez.</p>
+          <p>Si pudiera comparar tu existencia con algo, diría que eres como una estrella que decidió bajar del cielo para enseñarme que la felicidad sí tiene rostro. Amo la forma en que iluminas cada lugar al que llegas, la dulzura de tu voz, la ternura de tu mirada y esa manera tan tuya de convertir momentos simples en recuerdos inolvidables.</p>
+          <p>Y cuando pienso en el futuro, no imagino grandes lujos ni historias perfectas. Solo te imagino a ti. Tomando mi mano, compartiendo risas, superando dificultades juntos y construyendo una vida llena de pequeños momentos que, a tu lado, se vuelven inmensos.</p>
+          <p>Porque si la vida fuera un poema, tú serías su verso más hermoso. Si fuera una canción, serías la melodía que nunca me cansaría de escuchar. Y si fuera un viaje, tú serías el destino al que siempre querría regresar.</p>
+          <p>Gracias por ser tú, por tu autenticidad, tu cariño y esa luz que irradias sin esfuerzo. Gracias por enseñarme que el amor no es solo un sentimiento, sino una elección diaria que me hace querer ser mejor cada día.</p>
+          <p>Gracias por elegirme cada día.<br>Gracias por convertir una clase de estadística en la historia más bonita de mi vida.</p>
+          <p class="letter-closing">Con todo mi amor,<br><em>Ademir, tu gordito 🐻</em></p>
+        </div>
+      </div>
+    </template>
+
+    <!-- CAPÍTULO 4 — LO QUE NUNCA TE DIJE -->
+    <template id="chapter-4">
+      <div class="chapter has-bg" style="--bg-img: url('assets/backgrounds/bg-thoughts.jpg')">
+        <div class="chapter-bg"></div>
+        <div class="chapter-label">Capítulo 5</div>
+        <h2>Lo que nunca te dije</h2>
+        <p class="section-subtitle">Cosas que sentí y no encontré cómo decirte.</p>
+        <div class="thoughts-container">
+          <div class="thought-card">Lo que nunca te dije es que desde que llegaste a mi vida, los días comunes empezaron a sentirse especiales.</div>
+          <div class="thought-card">Lo que nunca te dije es que muchas veces sonrío al recordar nuestras conversaciones cuando estoy solo.</div>
+          <div class="thought-card">Lo que nunca te dije es que tu voz tiene la extraña capacidad de calmar mis pensamientos más inquietos.</div>
+          <div class="thought-card">Lo que nunca te dije es que me acostumbré a buscarte en cada buena noticia que quiero contar.</div>
+          <div class="thought-card">Lo que nunca te dije es que tus abrazos se convirtieron en mi lugar favorito.</div>
+        </div>
+      </div>
+    </template>
+
+    <!-- CAPÍTULO 5 — COSAS QUE AMO DE TI -->
+    <template id="chapter-5">
+      <div class="chapter has-bg" style="--bg-img: url('assets/backgrounds/bg-stars.jpg')">
+        <div class="chapter-bg"></div>
+        <div class="chapter-label">Capítulo 6</div>
+        <h2>Cosas que amo de ti</h2>
+        <p class="section-subtitle">Toca una estrella para descubrir una razón. ✨</p>
+        <div class="stars-grid">
+          <button class="love-star" data-love="Amo tus ojos porque parecen dos ventanas abiertas hacia un universo que nunca termina de sorprenderme.">⭐</button>
+          <button class="love-star" data-love="Amo tu sonrisa porque tiene la delicadeza de un amanecer y la fuerza suficiente para iluminar mis días más grises.">⭐</button>
+          <button class="love-star" data-love="Amo tu voz porque llega a mí como una canción suave que siempre encuentra el camino de regreso a mi corazón.">⭐</button>
+          <button class="love-star" data-love="Amo tu forma de reír porque convierte los instantes más simples en recuerdos que deseo guardar para siempre.">⭐</button>
+          <button class="love-star" data-love="Amo tu mirada porque, incluso en silencio, logra decirme más que mil palabras.">⭐</button>
+          <button class="love-star" data-love="Amo la ternura que habita en ti y que se nota en cada pequeño gesto.">⭐</button>
+          <button class="love-star" data-love="Amo tu paciencia, que me enseña a ser mejor cada día.">⭐</button>
+          <button class="love-star" data-love="Amo tu manera de soñar, que hace que el mundo parezca más grande y más posible.">⭐</button>
+          <button class="love-star" data-love="Amo tu corazón, enorme y lleno de luz.">⭐</button>
+          <button class="love-star" data-love="Amo la forma en que cuidas a quienes amas, con una generosidad que me inspira.">⭐</button>
+        </div>
+        <div id="loveMessage" class="love-message-box"></div>
+      </div>
+    </template>
+
+    <!-- CAPÍTULO 6 — ¿ME CONOCES? -->
+    <template id="chapter-6">
+      <div class="chapter has-bg" style="--bg-img: url('assets/backgrounds/bg-quiz.jpg')">
+        <div class="chapter-bg"></div>
+        <div class="chapter-label">Capítulo 7</div>
+        <h2>¿Me conoces?</h2>
+        <p class="section-subtitle">Demuestra cuánto sabes de mí. 😏</p>
+        <div id="quizContainer"></div>
+        <button id="startQuizBtn" class="primary-btn">Comenzar quiz 💛</button>
+      </div>
+    </template>
+
+    <!-- CAPÍTULO 7 — LA ESTADÍSTICA MÁS BONITA -->
+    <template id="chapter-7">
+      <div class="chapter has-bg" style="--bg-img: url('assets/backgrounds/bg-stats.jpg')">
+        <div class="chapter-bg"></div>
+        <div class="chapter-label">Capítulo 8</div>
+        <h2>La estadística más bonita</h2>
+        <div class="stats-box">
+          <p>Nos conocimos en una clase de estadística.</p>
+          <p>Qué curioso…</p>
+          <p>Porque si alguien me hubiera pedido calcular la probabilidad de encontrarte, de que nuestros caminos se cruzaran justo así…</p>
+          <p>Habría dicho que era imposible.</p>
+          <div class="stats-formula-block">
+            <p class="stats-formula-title">P(encontrarte) = ∏ P(Cᵢ)</p>
+            <div class="stats-chain">
+              <div class="stats-chain-row"><span class="stats-ci">C₁</span><span class="stats-cdesc">Nacer en la misma ciudad</span><span class="stats-cval">≈ 1/850</span></div>
+              <div class="stats-chain-row"><span class="stats-ci">C₂</span><span class="stats-cdesc">Misma universidad</span><span class="stats-cval">≈ 1/112</span></div>
+              <div class="stats-chain-row"><span class="stats-ci">C₃</span><span class="stats-cdesc">Misma carrera</span><span class="stats-cval">≈ 1/48</span></div>
+              <div class="stats-chain-row"><span class="stats-ci">C₄</span><span class="stats-cdesc">Misma clase ese ciclo</span><span class="stats-cval">≈ 1/32</span></div>
+              <div class="stats-chain-row"><span class="stats-ci">C₅</span><span class="stats-cdesc">Que nuestras miradas se cruzaran</span><span class="stats-cval">≈ 1/∞</span></div>
+            </div>
+            <div class="stats-equals">
+              <span class="stats-lhs">P(encontrarte)</span>
+              <span class="stats-eq-sign">=</span>
+              <span class="stats-rhs"><span class="stats-frac"><span class="stats-num">1</span><span class="stats-den">850 × 112 × 48 × 32 × ∞</span></span></span>
+              <span class="stats-eq-sign">≈</span>
+              <span class="stats-tiny">6.8 × 10<sup>−10</sup></span>
+            </div>
+            <div class="stats-bayes">
+              <span>P(amarte</span>
+              <span class="stats-given"> | </span>
+              <span>encontrarte)</span>
+              <span class="stats-eq-sign"> = </span>
+              <strong class="stats-one">1</strong>
+            </div>
+          </div>
+          <p class="stats-conclusion">Una probabilidad casi nula… y aun así ocurrió. 🥹</p>
+        </div>
+      </div>
+    </template>
+
+    <!-- CAPÍTULO 8 — CARTAS PARA EL FUTURO -->
+    <template id="chapter-8">
+      <div class="chapter has-bg" style="--bg-img: url('assets/backgrounds/bg-future.jpg')">
+        <div class="chapter-bg"></div>
+        <div class="chapter-label">Capítulo 9</div>
+        <h2>Cartas para el futuro</h2>
+        <p class="section-subtitle">Estas cartas se abrirán en momentos especiales.<br>Por ahora, permanecen selladas. 🕊️</p>
+        <div class="future-letters">
+          <div class="future-letter locked">
+            <span class="letter-icon">📩</span>
+            <div class="letter-info"><h4>Para dentro de un año</h4><p>Para leer juntos el 8 de febrero de 2027.</p></div>
+            <span class="letter-lock">🔒</span>
+          </div>
+          <div class="future-letter locked">
+            <span class="letter-icon">📩</span>
+            <div class="letter-info"><h4>Para cuando más lo necesites</h4><p>Ábrela en un día difícil. Ahí estaré.</p></div>
+            <span class="letter-lock">🔒</span>
+          </div>
+          <div class="future-letter locked">
+            <span class="letter-icon">📩</span>
+            <div class="letter-info"><h4>Para la Elis del futuro</h4><p>Cuando vuelvas a leer esto, recuerda este momento.</p></div>
+            <span class="letter-lock">🔒</span>
           </div>
         </div>
-
-        <!-- MOMENTO 4 -->
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">[Fecha del momento 4]</span>
-            <h4>[Título del momento]</h4>
-            <p>[Descripción de este recuerdo especial…]</p>
-          </div>
-        </div>
-
-        <!-- MOMENTO 5 -->
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">[Fecha del momento 5]</span>
-            <h4>[Título del momento]</h4>
-            <p>[Descripción de este recuerdo especial…]</p>
-          </div>
-        </div>
-
-        <!-- MOMENTO 6 — HITO: 3 MESES -->
-        <div class="timeline-item highlight">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Agosto, 2026 ✨</span>
-            <h4>6 meses juntos</h4>
-            <p>El día que celebramos esto… y el comienzo de todo lo que viene.</p>
-          </div>
-        </div>
-
-        <!-- ↑ Puedes agregar o quitar momentos copiando un bloque .timeline-item -->
-
       </div>
-    </section>
+    </template>
 
-    <!-- ======================================================== -->
-    <!-- CAPÍTULO 3 — NUESTRO ÁLBUM                               -->
-    <!-- ======================================================== -->
-    <section class="chapter" id="capituloAlbum">
-      <div class="chapter-label">Capítulo 3</div>
-      <h2>Nuestro álbum</h2>
-      <p class="section-subtitle">Cada fotografía guarda un pedacito de nosotros.</p>
-
-      <div class="album-grid">
-
-        <!-- ↓ Reemplaza cada src con tu foto real, y el span con la descripción -->
-        <div class="photo-card">
-          <img src="assets/fotos/foto1.jpg" alt="Recuerdo 01" loading="lazy">
-          <span>Recuerdo 01</span>
-        </div>
-        <div class="photo-card">
-          <img src="assets/fotos/foto2.jpg" alt="Recuerdo 02" loading="lazy">
-          <span>Recuerdo 02</span>
-        </div>
-        <div class="photo-card">
-          <img src="assets/fotos/foto3.jpg" alt="Recuerdo 03" loading="lazy">
-          <span>Recuerdo 03</span>
-        </div>
-        <div class="photo-card">
-          <img src="assets/fotos/foto4.jpg" alt="Recuerdo 04" loading="lazy">
-          <span>Recuerdo 04</span>
-        </div>
-        <div class="photo-card">
-          <img src="assets/fotos/foto5.jpg" alt="Recuerdo 05" loading="lazy">
-          <span>Recuerdo 05</span>
-        </div>
-        <div class="photo-card">
-          <img src="assets/fotos/foto6.jpg" alt="Recuerdo 06" loading="lazy">
-          <span>Recuerdo 06</span>
-        </div>
-        <div class="photo-card">
-          <img src="assets/fotos/foto7.jpg" alt="Recuerdo 07" loading="lazy">
-          <span>Recuerdo 07</span>
-        </div>
-        <div class="photo-card">
-          <img src="assets/fotos/foto8.jpg" alt="Recuerdo 08" loading="lazy">
-          <span>Recuerdo 08</span>
-        </div>
-        <div class="photo-card">
-          <img src="assets/fotos/foto9.jpg" alt="Recuerdo 09" loading="lazy">
-          <span>Recuerdo 09</span>
-        </div>
-        <div class="photo-card">
-          <img src="assets/fotos/foto10.jpg" alt="Recuerdo 10" loading="lazy">
-          <span>Recuerdo 10</span>
-        </div>
-
-        <!-- ↑ Puedes agregar más copiando un bloque .photo-card (hasta foto20.jpg) -->
+    <!-- CAPÍTULO 9 — FINAL -->
+    <template id="chapter-9">
+      <div class="chapter final-chapter" style="--bg-img: url('assets/backgrounds/bg-final.jpg')">
+        <div class="chapter-bg"></div>
+        <div id="finalParticles"></div>
+        <h1 class="final-title">❤️ Te amo, Elis ❤️</h1>
+        <p class="final-text">Gracias por convertir una simple clase de estadística en la historia más bonita de mi vida.</p>
+        <p class="final-sub">Y esto es solo el comienzo…</p>
+        <div class="final-signature">Con amor, <em>Ademir 🐻</em></div>
       </div>
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- CAPÍTULO 4 — CARTA PARA TI                               -->
-    <!-- ======================================================== -->
-    <section class="chapter" id="capituloLetter">
-      <div class="chapter-label">Capítulo 4</div>
-      <h2>Una carta para ti</h2>
-
-      <div class="letter-paper">
-        <p class="letter-date">
-          <!-- ↓ CAMBIA la ciudad y fecha -->
-          Lima, agosto de 2026
-        </p>
-
-        <p class="letter-greeting">Mi amor,</p>
-
-        <p>
-          No sé muy bien cómo explicar lo que siento cuando estás cerca.
-          Solo sé que desde que llegaste a mi vida, algo en mí cambió para bien.
-        </p>
-        <p>
-          <!-- ↓ PERSONALIZA todo este párrafo con tus propias palabras -->
-          [Escribe aquí tu carta personal. Cuéntale cómo te hace sentir,
-          qué has aprendido de ella, qué te emociona del futuro juntos…]
-        </p>
-        <p>
-          [Continúa aquí con más palabras desde el corazón. No hay formato correcto,
-          solo lo que tú sientes de verdad.]
-        </p>
-        <p>
-          Gracias por elegirme cada día.<br>
-          Gracias por convertir una clase de estadística en la historia más bonita de mi vida.
-        </p>
-
-        <p class="letter-closing">
-          Con todo mi amor,<br>
-          <em>
-            <!-- ↓ PON TU NOMBRE -->
-            [Tu nombre]
-          </em>
-        </p>
-      </div>
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- CAPÍTULO 5 — LO QUE NUNCA TE DIJE                        -->
-    <!-- ======================================================== -->
-    <section class="chapter" id="capituloThoughts">
-      <div class="chapter-label">Capítulo 5</div>
-      <h2>Lo que nunca te dije</h2>
-      <p class="section-subtitle">Cosas que sentí y no encontré cómo decirte.</p>
-
-      <div class="thoughts-container">
-        <div class="thought-card">
-          Lo que nunca te dije es que desde que llegaste a mi vida,
-          los días comunes empezaron a sentirse especiales.
-        </div>
-        <div class="thought-card">
-          Lo que nunca te dije es que muchas veces sonrío al recordar
-          nuestras conversaciones cuando estoy solo.
-        </div>
-        <div class="thought-card">
-          Lo que nunca te dije es que tu voz tiene la extraña capacidad
-          de calmar mis pensamientos más inquietos.
-        </div>
-        <div class="thought-card">
-          Lo que nunca te dije es que me acostumbré a buscarte
-          en cada buena noticia que quiero contar.
-        </div>
-        <div class="thought-card">
-          Lo que nunca te dije es que tus abrazos se convirtieron en mi lugar favorito.
-        </div>
-        <!-- ↑ Puedes personalizar o agregar más .thought-card con tus propios secretos -->
-      </div>
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- CAPÍTULO 6 — COSAS QUE AMO DE TI                         -->
-    <!-- ======================================================== -->
-    <section class="chapter" id="capituloStars">
-      <div class="chapter-label">Capítulo 6</div>
-      <h2>Cosas que amo de ti</h2>
-      <p class="section-subtitle">Toca una estrella para descubrir una razón. ✨</p>
-
-      <div class="stars-grid">
-        <!-- ↓ Cambia el data-love con tus razones personales -->
-        <button class="love-star" data-love="Amo tus ojos porque parecen dos ventanas abiertas hacia un universo que nunca termina de sorprenderme.">⭐</button>
-        <button class="love-star" data-love="Amo tu sonrisa porque tiene la delicadeza de un amanecer y la fuerza suficiente para iluminar mis días más grises.">⭐</button>
-        <button class="love-star" data-love="Amo tu voz porque llega a mí como una canción suave que siempre encuentra el camino de regreso a mi corazón.">⭐</button>
-        <button class="love-star" data-love="Amo tu forma de reír porque convierte los instantes más simples en recuerdos que deseo guardar para siempre.">⭐</button>
-        <button class="love-star" data-love="Amo tu mirada porque, incluso en silencio, logra decirme más que mil palabras.">⭐</button>
-        <button class="love-star" data-love="Amo la ternura que habita en ti y que se nota en cada pequeño gesto.">⭐</button>
-        <button class="love-star" data-love="Amo tu paciencia, que me enseña a ser mejor cada día.">⭐</button>
-        <button class="love-star" data-love="Amo tu manera de soñar, que hace que el mundo parezca más grande y más posible.">⭐</button>
-        <button class="love-star" data-love="Amo tu corazón, enorme y lleno de luz.">⭐</button>
-        <button class="love-star" data-love="Amo la forma en que cuidas a quienes amas, con una generosidad que me inspira.">⭐</button>
-        <!-- ↑ Puedes cambiar los data-love por tus razones reales y únicas -->
-      </div>
-
-      <div id="loveMessage" class="love-message-box"></div>
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- CAPÍTULO 7 — NUESTRO PEQUEÑO JUEGO (PUZZLE)              -->
-    <!-- ======================================================== -->
-    <section class="chapter" id="capituloPuzzle">
-      <div class="chapter-label">Capítulo 7</div>
-      <h2>Nuestro pequeño juego</h2>
-      <p class="section-subtitle">Arma el rompecabezas y descubre la sorpresa.</p>
-
-      <div id="puzzleContainer" class="puzzle-container">
-        <!-- El puzzle se genera dinámicamente en js/puzzle.js -->
-        <!-- Imagen fuente: assets/puzzle/puzzle-image.jpg      -->
-        <p class="puzzle-placeholder">
-          🧩 El rompecabezas carga aquí.<br>
-          <small>Asegúrate de poner tu foto en <code>assets/puzzle/puzzle-image.jpg</code></small>
-        </p>
-      </div>
-
-      <button id="startPuzzleBtn" class="primary-btn">Comenzar rompecabezas</button>
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- CAPÍTULO 8 — LA ESTADÍSTICA MÁS BONITA                   -->
-    <!-- ======================================================== -->
-    <section class="chapter" id="capituloStats">
-      <div class="chapter-label">Capítulo 8</div>
-      <h2>La estadística más bonita</h2>
-
-      <div class="stats-box">
-        <p>Nos conocimos en una clase de estadística.</p>
-        <p>Qué curioso…</p>
-        <p>
-          Porque si alguien me hubiera pedido calcular la probabilidad
-          de encontrarte, de que nuestros caminos se cruzaran justo así…
-        </p>
-        <p>Habría dicho que era imposible.</p>
-
-        <div class="stats-formula">
-          <span>P(encontrarte) = imposible</span>
-          <span class="stats-arrow">→</span>
-          <span>P(amarte) = <strong>100%</strong></span>
-        </div>
-
-        <p class="stats-conclusion">
-          Y sin embargo, aquí estamos. 🥹
-        </p>
-      </div>
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- CAPÍTULO 9 — CARTAS PARA EL FUTURO                       -->
-    <!-- ======================================================== -->
-    <section class="chapter" id="capituloFutureLetters">
-      <div class="chapter-label">Capítulo 9</div>
-      <h2>Cartas para el futuro</h2>
-      <p class="section-subtitle">
-        Estas cartas se abrirán en momentos especiales.<br>
-        Por ahora, permanecen selladas. 🕊️
-      </p>
-
-      <div class="future-letters">
-
-        <div class="future-letter locked">
-          <span class="letter-icon">📩</span>
-          <div class="letter-info">
-            <h4>Para dentro de un año</h4>
-            <p>Para leer juntos el 8 de febrero de 2027.</p>
-          </div>
-          <span class="letter-lock">🔒</span>
-        </div>
-
-        <div class="future-letter locked">
-          <span class="letter-icon">📩</span>
-          <div class="letter-info">
-            <h4>Para cuando más lo necesites</h4>
-            <p>Ábrela en un día difícil. Ahí estaré.</p>
-          </div>
-          <span class="letter-lock">🔒</span>
-        </div>
-
-        <div class="future-letter locked">
-          <span class="letter-icon">📩</span>
-          <div class="letter-info">
-            <h4>Para la Elis del futuro</h4>
-            <p>Cuando vuelvas a leer esto, recuerda este momento.</p>
-          </div>
-          <span class="letter-lock">🔒</span>
-        </div>
-
-        <!-- ↑ Puedes agregar más cartas copiando un bloque .future-letter -->
-      </div>
-    </section>
-
-    <!-- ======================================================== -->
-    <!-- FINAL                                                     -->
-    <!-- ======================================================== -->
-    <section id="finalSection" class="chapter">
-      <div id="finalParticles"></div>
-
-      <h1 class="final-title">❤️ Te amo, Elis ❤️</h1>
-
-      <p class="final-text">
-        Gracias por convertir una simple clase de estadística
-        en la historia más bonita de mi vida.
-      </p>
-
-      <p class="final-sub">
-        Y esto es solo el comienzo…
-      </p>
-
-      <div class="final-signature">
-        <!-- ↓ PON TU NOMBRE -->
-        Con amor, <em>[Tu nombre]</em>
-      </div>
-    </section>
+    </template>
 
   </main><!-- /experience -->
 
@@ -514,8 +456,14 @@
   <script src="js/counter.js"></script>
   <script src="js/album.js"></script>
   <script src="js/letters.js"></script>
-  <script src="js/puzzle.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/future-letters.js"></script>
   <script src="js/finale.js"></script>
+  <script src="js/button-animations.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/bottom-nav.js"></script>
+  <script src="js/chapter-viewer.js"></script>
+  <script src="js/animations.js"></script>
   <script src="js/app.js"></script><!-- app.js inicializa todo -->
 
 </body>
