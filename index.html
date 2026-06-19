@@ -19,10 +19,16 @@
   <meta name="twitter:image" content="assets/icons/heart.svg">
   <meta name="theme-color" content="#C45C5C">
 
+  <!-- iOS PWA -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Para Elis">
+
   <!-- PWA manifest -->
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/icons/icon.svg">
+  <link rel="apple-touch-startup-image" href="assets/icons/icon.svg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -443,6 +449,21 @@
         <p class="final-text">Gracias por convertir una simple clase de estadística en la historia más bonita de mi vida.</p>
         <p class="final-sub">Y esto es solo el comienzo…</p>
         <div class="final-signature">Con amor, <em>Ademir 🐻</em></div>
+
+        <!-- Instalación PWA -->
+        <div id="installSection" class="install-section">
+          <div class="install-divider"></div>
+          <button id="installBtn" class="primary-btn install-btn" hidden>
+            📥 Instalar app
+          </button>
+          <div id="iosInstallMsg" class="install-ios-msg" hidden>
+            <p class="install-ios-title">📲 Agregar a pantalla de inicio</p>
+            <p class="install-ios-text">
+              Toca <span class="ios-icon">⎙</span> Compartir
+              y luego <strong>"Agregar a pantalla de inicio"</strong>
+            </p>
+          </div>
+        </div>
       </div>
     </template>
 

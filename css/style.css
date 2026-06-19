@@ -1590,3 +1590,50 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ================================================================
+   INSTALACIÓN PWA
+=============================================================== */
+.install-section {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.install-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--sepia-light), transparent);
+  opacity: 0.3;
+}
+
+.install-btn {
+  font-size: 1rem;
+}
+
+.install-ios-msg {
+  text-align: center;
+  max-width: 280px;
+}
+
+.install-ios-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--sepia);
+  margin-bottom: 0.5rem;
+}
+
+.install-ios-text {
+  font-size: 0.85rem;
+  color: var(--sepia-light);
+  line-height: 1.6;
+}
+
+.ios-icon {
+  display: inline-block;
+  font-size: 1.1rem;
+  vertical-align: middle;
+}

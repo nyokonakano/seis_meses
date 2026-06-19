@@ -133,6 +133,61 @@
   }
 
   /* ================================================================
+     INSTALACIÓN PWA (Android + iOS)
+  ================================================================ */
+  let deferredPrompt = null;
+
+  const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent)
+    && !window.MSStream;
+
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+    || navigator.standalone;
+
+  function initPwaInstall () {
+    if (isStandalone) return;
+
+    const installSection  = document.querySelector('#chContent #installSection');
+    const installBtn      = document.querySelector('#chContent #installBtn');
+    const iosInstallMsg   = document.querySelector('#chContent #iosInstallMsg');
+
+    if (!installSection) return;
+
+    if (isIos) {
+      if (iosInstallMsg) iosInstallMsg.hidden = false;
+      return;
+    }
+
+    if (deferredPrompt) installBtn.hidden = false;
+  }
+
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    const btn = document.querySelector('#chContent #installBtn');
+    if (btn) btn.hidden = false;
+  });
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('#installBtn');
+    if (!btn || !deferredPrompt) return;
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      btn.hidden = true;
+    });
+  });
+
+  window.addEventListener('appinstalled', () => {
+    deferredPrompt = null;
+    const section = document.querySelector('#chContent #installSection');
+    if (section) section.hidden = true;
+  });
+
+  document.addEventListener('chapterLoaded', e => {
+    if (e.detail.index === 9) initPwaInstall();
+  });
+
+  /* ================================================================
      EASTER EGG — KONAMI CODE
   ================================================================ */
   (function initKonami () {
