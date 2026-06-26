@@ -4,7 +4,7 @@
 
 (function () {
 
-  const CORRECT = window.CONFIG ? CONFIG.PASSWORD : '08022026';
+  const CORRECT = window.CONFIG ? CONFIG.PASSWORD : '08032026';
 
   /* ── Elementos ───────────────────────────────────────────── */
   let input, btn, msg;
