@@ -4,13 +4,8 @@
 
 (function () {
 
-  /* ── Configuración ───────────────────────────────────────────
-     START_DATE  → fecha de inicio de la relación
-     TARGET_DATE → fecha del hito (6 meses)
-     Modifica solo estas dos líneas si cambian las fechas.
-  ──────────────────────────────────────────────────────────── */
-  const START_DATE  = new Date('2026-02-08T00:00:00');  // 8 feb 2026
-  const TARGET_DATE = new Date('2026-08-08T00:00:00');  // 8 ago 2026 (6 meses)
+  const START_DATE  = window.CONFIG ? CONFIG.START_DATE : new Date('2026-02-08T00:00:00');
+  const TARGET_DATE = window.CONFIG ? CONFIG.TARGET_DATE : new Date('2026-08-08T00:00:00');
 
   /* ── Elementos ───────────────────────────────────────────── */
   let displayEl, progressEl, intervalId;
@@ -68,9 +63,10 @@
     }
   }
 
-  /* ── Inyectar estilos del contador ──────────────────────── */
   function injectStyles () {
+    if (document.getElementById('counter-styles')) return;
     const s = document.createElement('style');
+    s.id = 'counter-styles';
     s.textContent = `
       .counter-units {
         display: flex;

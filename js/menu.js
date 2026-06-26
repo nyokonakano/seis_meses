@@ -33,6 +33,7 @@
     });
   }
 
+  window.CHAPTERS = CHAPTERS;
   window.Menu = { init };
 
 })();

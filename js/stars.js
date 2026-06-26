@@ -92,6 +92,18 @@
     animId = requestAnimationFrame(loop);
   }
 
+  function pause () {
+    if (animId) { cancelAnimationFrame(animId); animId = null; }
+  }
+
+  function resume () {
+    if (!animId) loop();
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) pause(); else resume();
+  });
+
   /* ── Iniciar ────────────────────────────────────────────── */
   function init () {
     resize();
@@ -104,6 +116,6 @@
   }
 
   /* Exportar para que app.js pueda iniciarlo */
-  window.Stars = { init };
+  window.Stars = { init, pause, resume };
 
 })();

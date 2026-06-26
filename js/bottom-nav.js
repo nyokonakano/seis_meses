@@ -1,6 +1,6 @@
 (function () {
 
-  const TOTAL = 10;
+  const TOTAL = window.CHAPTERS ? CHAPTERS.length : 10;
   let currentIndex = 0;
   let prevBtn, nextBtn, dotsContainer;
 

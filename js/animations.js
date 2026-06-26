@@ -167,66 +167,12 @@
       container.appendChild(el);
     }
 
-    if (!document.getElementById('particleFloatStyle')) {
-      const s = document.createElement('style');
-      s.id = 'particleFloatStyle';
-      s.textContent = `
-        @keyframes particleFloat {
-          0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
-          5%   { opacity: 0.15; }
-          90%  { opacity: 0.08; }
-          100% { transform: translateY(-110vh) translateX(var(--drift)) rotate(30deg); opacity: 0; }
-        }
-      `;
-      document.head.appendChild(s);
-    }
-  }
-
-  /* ================================================================
-     5 — HOVER EN TÍTULOS (línea decorativa + brillo)
-  ================================================================ */
-  function initTitleHover () {
-    const style = document.createElement('style');
-    style.textContent = `
-      .chapter h2 {
-        position: relative;
-        display: inline-block;
-        transition: color 0.3s ease;
-      }
-
-      .chapter h2::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        bottom: -4px;
-        width: 0;
-        height: 1.5px;
-        background: linear-gradient(90deg, transparent, var(--rose-light), transparent);
-        transition: width 0.4s cubic-bezier(.22,1,.36,1), left 0.4s ease;
-        pointer-events: none;
-      }
-
-      .chapter:hover h2::after {
-        width: 60%;
-        left: 20%;
-      }
-
-      .chapter h2 {
-        text-shadow: 0 0 0 transparent;
-        transition: text-shadow 0.3s ease, color 0.3s ease;
-      }
-
-      .chapter:hover h2 {
-        color: var(--rose);
-        text-shadow: 0 0 20px rgba(196,92,92,0.08);
-      }
-    `;
-    document.head.appendChild(style);
+    /* keyframe floatParticle ya está en animations.css */
   }
 
   /* ================================================================
      INIT
-  ================================================================ */
+   ================================================================ */
   function init () {
     if (!document.querySelector('#experience.active')) {
       document.addEventListener('experienceReady', run);
@@ -240,7 +186,6 @@
     initTypewriter();
     initChapterTransitions();
     initParticles();
-    initTitleHover();
   }
 
   window.Animations = { init };

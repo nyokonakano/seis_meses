@@ -32,11 +32,6 @@
   to   { opacity: 1; }
 }
 
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes fadeSlideLeft {
   from { opacity: 0; transform: translateX(24px); }
   to   { opacity: 1; transform: translateX(0); }
@@ -87,11 +82,7 @@
 }
 
 /* Final con dispersión lateral */
-@keyframes floatFinal {
-  0%   { transform: translateY(0)      translateX(0)       rotate(0deg)  scale(0.8); opacity: 0;   }
-  8%   {                                                                              opacity: 0.8; }
-  100% { transform: translateY(-90vh)  translateX(var(--drift, 20px)) rotate(50deg) scale(1.1); opacity: 0; }
-}
+/* finaleFloat es la versión unificada; floatFinal se elimina */
 
 /* ----------------------------------------------------------------
    SELLO DE CERA — APARICIÓN
@@ -123,6 +114,14 @@
   40%  { transform: scale(1.6) rotate(-12deg); }
   70%  { transform: scale(0.95) rotate(5deg); }
   100% { transform: scale(1.1); }
+}
+
+/* ── Finale float (antes inyectado por finale.js) ─────────── */
+@keyframes finaleFloat {
+  0%   { transform: translateY(0)      translateX(0)          rotate(0deg)  scale(0.8); opacity: 0;   }
+  8%   { opacity: 0.85; }
+  90%  { opacity: 0.4;  }
+  100% { transform: translateY(-110vh) translateX(var(--drift)) rotate(45deg) scale(1.1); opacity: 0; }
 }
 
 /* ----------------------------------------------------------------
@@ -181,6 +180,21 @@
 /* ----------------------------------------------------------------
    MÚSICA — ÍCONO GIRATORIO CUANDO ESTÁ ACTIVA
 ---------------------------------------------------------------- */
+/* ── Shake error (antes inyectado por password.js) ─────────── */
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-10px); }
+  40%       { transform: translateX(10px); }
+  60%       { transform: translateX(-7px); }
+  80%       { transform: translateX(7px); }
+}
+
+/* ── Konami drop (antes inyectado por app.js) ─────────────── */
+@keyframes konamiDrop {
+  from { transform: translateY(0) rotate(0deg); opacity: 1; }
+  to   { transform: translateY(110vh) rotate(40deg); opacity: 0; }
+}
+
 @keyframes spin {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }

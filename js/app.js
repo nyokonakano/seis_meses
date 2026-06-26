@@ -225,12 +225,7 @@
         setTimeout(() => el.remove(), 1900);
       }, 120);
 
-      if (!document.getElementById('konamiStyle')) {
-        const s = document.createElement('style');
-        s.id    = 'konamiStyle';
-        s.textContent = `@keyframes konamiDrop { from { transform: translateY(0) rotate(0deg); opacity: 1; } to { transform: translateY(110vh) rotate(40deg); opacity: 0; } }`;
-        document.head.appendChild(s);
-      }
+      /* konamiDrop keyframe ahora está en animations.css */
     }
   })();
 

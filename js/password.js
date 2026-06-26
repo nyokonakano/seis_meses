@@ -4,11 +4,7 @@
 
 (function () {
 
-  /* ── Contraseña correcta ─────────────────────────────────
-     Formato: DDMMYYYY de la fecha de inicio
-     Fecha inicio: 08 de febrero de 2026 → "08022026"
-  ──────────────────────────────────────────────────────── */
-  const CORRECT = '08022026';
+  const CORRECT = window.CONFIG ? CONFIG.PASSWORD : '08022026';
 
   /* ── Elementos ───────────────────────────────────────────── */
   let input, btn, msg;
@@ -80,19 +76,4 @@
 
   window.Password = { init };
 
-})();
-
-/* ── Keyframe para shake (inyectado dinámicamente) ─────────── */
-(function injectShakeKeyframe () {
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes shakeError {
-      0%, 100% { transform: translateX(0); }
-      20%       { transform: translateX(-10px); }
-      40%       { transform: translateX(10px); }
-      60%       { transform: translateX(-7px); }
-      80%       { transform: translateX(7px); }
-    }
-  `;
-  document.head.appendChild(style);
 })();

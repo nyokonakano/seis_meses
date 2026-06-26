@@ -28,21 +28,6 @@
     return el;
   }
 
-  function injectKeyframe () {
-    if (document.getElementById('finaleKeyframe')) return;
-    const s = document.createElement('style');
-    s.id = 'finaleKeyframe';
-    s.textContent = `
-      @keyframes finaleFloat {
-        0%   { transform: translateY(0)      translateX(0)          rotate(0deg)  scale(0.8); opacity: 0;   }
-        8%   { opacity: 0.85; }
-        90%  { opacity: 0.4;  }
-        100% { transform: translateY(-110vh) translateX(var(--drift)) rotate(45deg) scale(1.1); opacity: 0; }
-      }
-    `;
-    document.head.appendChild(s);
-  }
-
   function start () {
     running = true;
     for (let i = 0; i < 18; i++) particles.push(createParticle());
@@ -57,7 +42,6 @@
   function init () {
     container = document.getElementById('finalParticles');
     if (!container) return;
-    injectKeyframe();
     start();
   }
 

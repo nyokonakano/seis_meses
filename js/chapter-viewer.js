@@ -9,6 +9,7 @@
     8: ['FutureLetters'],
     9: ['Finale'],
   };
+  window.CHAPTER_MODULES = MODULES;
 
   function init () {
     contentEl = document.getElementById('chContent');
