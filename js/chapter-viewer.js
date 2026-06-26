@@ -4,6 +4,7 @@
 
   const MODULES = {
     2: ['Album'],
+    4: ['Thoughts'],
     5: ['Letters'],
     6: ['Quiz'],
     8: ['FutureLetters'],

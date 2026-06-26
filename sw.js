@@ -9,6 +9,7 @@ const PRECACHE = [
   'css/responsive.css',
   'js/config.js',
   'js/stars.js',
+  'js/thoughts.js',
   'js/password.js',
   'js/counter.js',
   'js/album.js',

@@ -1,12 +1,8 @@
-/* ================================================================
-   letters.js — Estrellas interactivas "Cosas que amo de ti"
-================================================================ */
-
 (function () {
 
   let messageBox;
+  let reasons = [];
 
-  /* ── Colores rotativos para el mensaje ───────────────────── */
   const COLORS = [
     'var(--rose)',
     'var(--amber)',
@@ -16,12 +12,9 @@
   ];
   let colorIdx = 0;
 
-  /* ── Mostrar mensaje con animación ───────────────────────── */
   function showMessage (text) {
     if (!messageBox) return;
-
     messageBox.classList.remove('visible');
-
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         messageBox.textContent = text;
@@ -32,14 +25,11 @@
     });
   }
 
-  /* ── Partícula mini que vuela desde la estrella ──────────── */
   function spawnSparkle (star) {
     const rect = star.getBoundingClientRect();
     const cx   = rect.left + rect.width  / 2 + window.scrollX;
     const cy   = rect.top  + rect.height / 2 + window.scrollY;
-
     const sparks = ['✦', '✧', '·', '★', '♡'];
-
     for (let i = 0; i < 5; i++) {
       const el = document.createElement('span');
       el.textContent = sparks[Math.floor(Math.random() * sparks.length)];
@@ -56,43 +46,50 @@
         transition: transform 0.7s ease, opacity 0.7s ease;
       `;
       document.body.appendChild(el);
-
       const angle  = (Math.random() * 360) * Math.PI / 180;
       const dist   = Math.random() * 60 + 30;
       const dx     = Math.cos(angle) * dist;
       const dy     = Math.sin(angle) * dist;
-
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           el.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.3)`;
           el.style.opacity   = '0';
         });
       });
-
       setTimeout(() => el.remove(), 750);
     }
   }
 
-  /* ── Init ────────────────────────────────────────────────── */
-  function init () {
-    messageBox   = document.getElementById('loveMessage');
-    const stars  = document.querySelectorAll('.love-star');
-
-    if (!stars.length) return;
-
-    stars.forEach(star => {
-      star.addEventListener('click', () => {
-        const text = star.dataset.love;
-        if (!text) return;
-
-        /* Marcar la estrella */
-        stars.forEach(s => s.classList.remove('revealed'));
-        star.classList.add('revealed');
-
-        showMessage(text);
-        spawnSparkle(star);
+  function buildStars () {
+    const grid = document.querySelector('.stars-grid');
+    if (!grid || !reasons.length) return;
+    grid.innerHTML = '';
+    reasons.forEach(r => {
+      const btn = document.createElement('button');
+      btn.className = 'love-star';
+      btn.dataset.love = r.text;
+      btn.textContent = '⭐';
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.love-star').forEach(s => s.classList.remove('revealed'));
+        btn.classList.add('revealed');
+        showMessage(r.text);
+        spawnSparkle(btn);
       });
+      grid.appendChild(btn);
     });
+  }
+
+  function loadReasons () {
+    if (reasons.length) { buildStars(); return; }
+    fetch('data/love-reasons.json')
+      .then(r => r.json())
+      .then(data => { reasons = data; buildStars(); })
+      .catch(() => {});
+  }
+
+  function init () {
+    messageBox = document.getElementById('loveMessage');
+    loadReasons();
   }
 
   window.Letters = { init };
